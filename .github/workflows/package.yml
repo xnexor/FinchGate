@@ -45,9 +45,13 @@ jobs:
       - name: Build Tauri app (exe only, no bundle)
         run: pnpm -C muse-connector tauri build --no-bundle
 
+      - name: Rename exe to FinchGate.exe
+        shell: pwsh
+        run: Rename-Item "muse-connector/src-tauri/target/release/muse-connector.exe" "FinchGate.exe"
+
       - name: Upload exe artifact
         uses: actions/upload-artifact@v4
         with:
-          name: muse-connector-exe
-          path: muse-connector/src-tauri/target/release/muse-connector.exe
+          name: finchgate-exe
+          path: muse-connector/src-tauri/target/release/FinchGate.exe
           if-no-files-found: error
