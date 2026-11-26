@@ -79,11 +79,13 @@ pub fn refresh(app: &AppHandle) {
         let _ = tray.set_tooltip(Some(tooltip));
     }
     let items = app.state::<TrayItems>();
-    let _ = items.status.set_text(if language == Language::English || language == Language::Persian {
-        format!("Status: {health}")
-    } else {
-        format!("状态：{health}")
-    });
+    let _ = items.status.set_text(
+        if language == Language::English || language == Language::Persian {
+            format!("Status: {health}")
+        } else {
+            format!("状态：{health}")
+        },
+    );
     let _ = items.toggle.set_text(if status.enabled {
         language.text("暂停连接", "Pause connection")
     } else {
