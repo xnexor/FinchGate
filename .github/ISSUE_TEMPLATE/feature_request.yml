@@ -1,0 +1,26 @@
+name: 功能建议 / Feature Request
+description: 提出新功能、交互改进或文档建议 / Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 使用场景与痛点 / Use Case & Motivation
+      description: 简述你想解决什么问题或希望提升哪类使用体验 / Describe the problem or workflow you want to improve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望方案 / Proposed Solution
+      description: 你希望 MuseLink 如何实现这项能力 / Describe how you would like this to work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充说明 / Additional Context
+      description: 可选。可附截图、参考方案或安全边界考量 / Optional screenshots, mockups, or security notes.

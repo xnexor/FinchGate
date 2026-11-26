@@ -1,0 +1,63 @@
+name: 问题反馈 / Bug Report
+description: 反馈异常行为、界面问题或功能故障 / Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先在 **设置 → 数据 → 日志数据** 导出的日志中确认不含真实令牌或隐私目录路径；若涉及安全漏洞，请改用 [Security Advisories](https://github.com/Aenvo/MuseLink/security/advisories/new) 私下上报。
+
+        Please redact any personal paths or secrets before posting. For security vulnerabilities, use [Security Advisories](https://github.com/Aenvo/MuseLink/security/advisories/new) instead.
+
+  - type: input
+    id: version
+    attributes:
+      label: MuseLink 版本 / Version
+      placeholder: 例如 / e.g. v0.2.1 (portable / installer)
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Windows 版本 / Windows Version
+      placeholder: 例如 / e.g. Windows 11 24H2 x64
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: 连接方式 / Tunnel Provider
+      options:
+        - Tailscale Funnel
+        - Cloudflare Named Tunnel
+        - 未连接 / Not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述 / What happened?
+      description: 简述实际发生了什么，以及你期望的结果 / Describe what happened and what you expected.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to Reproduce
+      placeholder: |
+        1. 打开 Muse连接器...
+        2. 点击...
+        3. 观察到...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 脱敏日志或截图 / Redacted Logs or Screenshots
+      description: 可选。粘贴脱敏后的日志片段或直接拖拽截图 / Optional. Paste redacted logs or drop screenshots.

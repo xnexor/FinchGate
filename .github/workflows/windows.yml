@@ -1,0 +1,77 @@
+name: Windows
+
+on:
+  push:
+    branches:
+      - main
+      - "codex/**"
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: always
+      RUST_BACKTRACE: "1"
+      # 让 symlink_escape 在 CI 上必须真实执行，而不是因缺权限被跳过。
+      MUSE_CONNECTOR_REQUIRE_SYMLINK_TESTS: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Enable Developer Mode for symlink coverage
+        shell: pwsh
+        # 注册表写入失败不直接中断作业：真正缺能力时由 symlink_escape 的断言给出明确失败。
+        continue-on-error: true
+        run: |
+          $key = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock'
+          if (-not (Test-Path -LiteralPath $key)) {
+            New-Item -Path $key -Force | Out-Null
+          }
+          New-ItemProperty -LiteralPath $key -Name AllowDevelopmentWithoutDevLicense -PropertyType DWord -Value 1 -Force | Out-Null
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: muse-connector/pnpm-lock.yaml
+
+      - name: Show toolchain
+        run: |
+          node --version
+          pnpm --version
+          rustc -vV
+          cargo fmt --version
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: muse-connector/src-tauri
+
+      - name: Check Rust formatting
+        run: cargo fmt --manifest-path muse-connector/src-tauri/Cargo.toml --all -- --check
+
+      - name: Install locked dependencies
+        run: pnpm -C muse-connector install --frozen-lockfile
+
+      - name: Build frontend
+        run: pnpm -C muse-connector build
+
+      - name: Run Rust tests
+        run: cargo test --manifest-path muse-connector/src-tauri/Cargo.toml --locked

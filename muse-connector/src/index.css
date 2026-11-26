@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+:root, .dark {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #fafafa;
+  --card: #181818;
+  --card-foreground: #fafafa;
+  --popover: #181818;
+  --popover-foreground: #fafafa;
+  --primary: #ededed;
+  --primary-foreground: #101010;
+  --secondary: #272727;
+  --secondary-foreground: #fafafa;
+  --muted: #222222;
+  --muted-foreground: #a3a3a3;
+  --accent: #313131;
+  --accent-foreground: #fafafa;
+  --destructive: #ededed;
+  --destructive-foreground: #101010;
+  --border: #343434;
+  --input: #404040;
+  --ring: #a3a3a3;
+  --status-success: #4ade80;
+  --status-warning: #facc15;
+  --status-error: #f87171;
+  --switch-checked: #48c52c;
+  --scrollbar-thumb: #737373;
+  --scrollbar-thumb-hover: #a3a3a3;
+  --radius: 0.625rem;
+  --chart-1: #ededed;
+  --chart-2: #999999;
+  --chart-3: #666666;
+  --chart-4: #bfbfbf;
+  --chart-5: #777777;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-error: var(--status-error);
+  --color-switch-checked: var(--switch-checked);
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.6;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.6;
+  --text-base--line-height: 1.5;
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body { overflow: hidden; }
+  body { @apply bg-background text-foreground text-sm; margin: 0; font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif; }
+  button, input, select { font: inherit; }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+  :focus-visible:not(:is(input, textarea, select, [contenteditable="true"], [data-slot="select-trigger"], [data-slot="tabs-trigger"], [data-slot="button"], [data-slot="switch"], [data-slot="badge"])) { outline: 2px solid var(--ring); outline-offset: 3px; }
+  /* The selected tab is its own focus indicator. Keep keyboard focus visible
+     only when it rests on an inactive tab, without stacking both states. */
+  [data-slot="tabs-trigger"]:focus { outline: none; }
+  [data-slot="tabs-trigger"][data-state="inactive"]:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  /* Editing focus changes the existing border. Pressing and opening remain separate states. */
+  :is(input, textarea, select, [contenteditable="true"], [data-slot="select-trigger"]):focus {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--ring);
+  }
+  :is(input, textarea, select, [contenteditable="true"], [data-slot="select-trigger"]):active {
+    border-color: var(--foreground);
+  }
+}
+/* Portaled dialogs, selects and horizontal tables share the app scrollbar.
+   The page itself uses the existing Radix ScrollArea hover scrollbar. */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+html:hover::-webkit-scrollbar-thumb, html:hover *::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+}
+html:hover::-webkit-scrollbar-thumb:hover, html:hover *::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+[data-slot="dialog-content"], [data-slot="alert-dialog-content"], [data-slot="select-content"] {
+  overscroll-behavior: contain;
+}
+.app-shell { --app-gutter: 24px; width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--app-gutter); }
+.app-header { padding-top: var(--app-gutter); padding-bottom: 16px; }
+.app-navigation { padding-bottom: 16px; }
+.app-scroll > [data-slot="scroll-area-viewport"] { scroll-padding-block-end: var(--setup-guide-space, 0px); }
+.app-page { padding-block: 8px calc(var(--app-gutter) + var(--setup-guide-space, 0px)); }
+.page-stack { display: flex; flex-direction: column; gap: 24px; }
+.detail-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); row-gap: 20px; column-gap: 24px; }
+.detail-grid > div { display: flex; min-width: 0; flex-direction: column; gap: 6px; }
+.detail-grid dt { font-size: var(--text-caption); line-height: 1.6; }
+.detail-grid dd { margin: 0; font-size: var(--text-sm); line-height: 1.6; }
+.metric-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; }
+.status-badge[data-tone="success"] { color: var(--status-success); }
+.status-badge[data-tone="warning"] { color: var(--status-warning); }
+.status-badge[data-tone="error"] { color: var(--status-error); }
+.status-badge[data-tone="neutral"] { color: var(--muted-foreground); }
+.log-row { content-visibility: auto; contain-intrinsic-size: auto 60px; }
+.setup-guide { position: fixed; inset-inline-end: 24px; inset-block-end: 16px; z-index: 30; }
+.setup-guide-expanded { width: min(21rem, calc(100vw - 2rem)); }
+.setup-guide-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: min(26rem, calc(100dvh - 9rem));
+}
+.setup-guide-panel > [data-slot="card-header"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+.setup-guide-panel > [data-slot="scroll-area"] { display: flex; flex-direction: column; }
+.setup-guide-panel > [data-slot="scroll-area"] > [data-slot="scroll-area-viewport"] { height: auto; min-height: 0; flex: 1; }
+.setup-guide-panel > .setup-guide-footer { padding: 8px 12px; }
+.setup-guide-step { position: relative; }
+.setup-guide-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 19px;
+  inset-block: 26px -7px;
+  width: 1px;
+  background: var(--border);
+  pointer-events: none;
+}
+.setup-guide-step-trigger { position: relative; }
+.setup-guide-marker { display: grid; width: 23px; height: 23px; flex: none; place-items: center; border-radius: 50%; font-size: 0.75rem; }
+.setup-guide-marker svg { width: 14px; height: 14px; }
+@media (max-width: 600px) { .app-shell { --app-gutter: 16px; } .detail-grid { grid-template-columns: minmax(0,1fr); } .metric-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 600px), (max-height: 480px) {
+  .setup-guide { inset-inline-end: 16px; }
+  .setup-guide-expanded { width: min(19rem, calc(100vw - 2rem)); }
+  .setup-guide-panel { max-height: min(24rem, calc(100dvh - 10rem)); }
+}
+@media (max-width: 600px) {
+  [data-sonner-toast].setup-guide-toast { max-width: calc(100vw - 9rem); }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

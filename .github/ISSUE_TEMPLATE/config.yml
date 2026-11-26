@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 报告安全漏洞 / Report a Security Vulnerability
+    url: https://github.com/Aenvo/MuseLink/security/advisories/new
+    about: 请通过私密 Security Advisory 上报安全漏洞，勿在公开 Issue 披露。 / Report security issues privately instead of opening a public issue.

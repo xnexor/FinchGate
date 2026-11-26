@@ -1,0 +1,36 @@
+# --- Rust / Tauri ---
+src-tauri/target/
+**/target/
+# Cargo.lock 提交入库（应用类项目，冻结依赖保证可复现构建）
+
+# --- 前端 ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# --- 构建产物 ---
+*.exe
+*.msi
+*.zip
+src-tauri/gen/
+
+# --- 系统文件 ---
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- 本地工具与工作区数据 ---
+.workbuddy/
+
+# --- 敏感（桥接运行时产物不入库）---
+/doc/
+.env
+.env.*
+*.log
+token
+agent-token
+config.json
+desktop-state.json
+access-policy.json
+search-index*

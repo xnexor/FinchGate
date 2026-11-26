@@ -1,0 +1,53 @@
+name: Package
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Build Windows exe
+    runs-on: windows-latest
+    timeout-minutes: 60
+    env:
+      CARGO_TERM_COLOR: always
+      RUST_BACKTRACE: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: muse-connector/pnpm-lock.yaml
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: muse-connector/src-tauri
+
+      - name: Install locked dependencies
+        run: pnpm -C muse-connector install --frozen-lockfile
+
+      - name: Build Tauri app (exe only, no bundle)
+        run: pnpm -C muse-connector tauri build --no-bundle
+
+      - name: Upload exe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: muse-connector-exe
+          path: muse-connector/src-tauri/target/release/muse-connector.exe
+          if-no-files-found: error
