@@ -72,6 +72,7 @@ export default function Settings({
                 <SelectContent>
                   <SelectItem value="zh-CN"><span lang="zh-CN">简体中文</span></SelectItem>
                   <SelectItem value="en"><span lang="en">English</span></SelectItem>
+                  <SelectItem value="fa"><span lang="fa">فارسی</span></SelectItem>
                 </SelectContent>
               </Select>
             </Field>

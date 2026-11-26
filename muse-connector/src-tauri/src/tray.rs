@@ -79,7 +79,7 @@ pub fn refresh(app: &AppHandle) {
         let _ = tray.set_tooltip(Some(tooltip));
     }
     let items = app.state::<TrayItems>();
-    let _ = items.status.set_text(if language == Language::English {
+    let _ = items.status.set_text(if language == Language::English || language == Language::Persian {
         format!("Status: {health}")
     } else {
         format!("状态：{health}")

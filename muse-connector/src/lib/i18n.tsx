@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, type ReactNode } from "react";
-import { english } from "@/lib/messages";
+import { english, persian } from "@/lib/messages";
 
-export type Language = "zh-CN" | "en";
+export type Language = "zh-CN" | "en" | "fa";
 type Message = keyof typeof english;
 export type Translate = (message: Message, ...values: (string | number)[]) => string;
 
@@ -17,7 +17,8 @@ const diagnosticPatterns = [
 export function LanguageProvider({ language, children }: { language: Language; children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = language === "en" ? english["Muse连接器"] : "Muse连接器";
+    document.documentElement.dir = language === "fa" ? "rtl" : "ltr";
+    document.title = language === "zh-CN" ? "Muse连接器" : english["Muse连接器"];
   }, [language]);
 
   return <LanguageContext.Provider value={language}>{children}</LanguageContext.Provider>;
@@ -26,7 +27,7 @@ export function LanguageProvider({ language, children }: { language: Language; c
 export function useLanguage() {
   const language = useContext(LanguageContext);
   const t = useCallback<Translate>((message, ...values) => {
-    const pattern = language === "en" ? english[message] : message;
+    const pattern = language === "en" ? english[message] : language === "fa" ? (persian[message] ?? english[message]) : message;
     return values.length ? pattern.replace(/\{(\d+)\}/g, (placeholder, index) => String(values[Number(index)] ?? placeholder)) : pattern;
   }, [language]);
 

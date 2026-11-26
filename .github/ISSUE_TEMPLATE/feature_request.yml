@@ -15,7 +15,7 @@ body:
     id: proposal
     attributes:
       label: 期望方案 / Proposed Solution
-      description: 你希望 MuseLink 如何实现这项能力 / Describe how you would like this to work.
+      description: 你希望 FinchLink 如何实现这项能力 / Describe how you would like this to work.
     validations:
       required: true
 

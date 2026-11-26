@@ -117,14 +117,14 @@ export function agentTrial(t: Translate, policy: FileAccessPolicy | null, prefer
 export function deviceRenameBrief(language: Language, origin: string, deviceName: string, id: string) {
   const endpoint = `${origin}/agent/v1/device-name/confirm`;
   const body = JSON.stringify({ update_id: id });
-  if (language === "en") return `Find my existing Custom Connector for ${origin}. Rename it to “Muse Local Files - ${deviceName}” and use “${deviceName}” as the device name in its instructions. Keep its existing endpoint, tools, and credentials. If you cannot identify or update that connector, stop and tell me.
+  if (language !== "zh-CN") return `Find my existing Custom Connector for ${origin}. Rename it to “Muse Local Files - ${deviceName}” and use “${deviceName}” as the device name in its instructions. Keep its existing endpoint, tools, and credentials. If you cannot identify or update that connector, stop and tell me.
 After the change succeeds, use this connector's existing dedicated credential to send POST ${endpoint} with Content-Type: application/json and body ${body}. If the confirmation fails, report the HTTP status and error.`;
   return `请找到 HTTPS 地址为 ${origin} 的现有 Custom Connector，把显示名称更新为「Muse 本机文件 - ${deviceName}」，并把连接器指令中的设备名称更新为「${deviceName}」。沿用原有地址、工具和专用凭证。如果无法确定连接器或无法修改，请停下来告诉我。
 改名成功后，请使用该连接器已有的专用凭证发送 POST ${endpoint}，Content-Type 为 application/json，请求体为 ${body}。回执失败时，请告诉我实际 HTTP 状态码和错误。`;
 }
 
 export function connectorBrief(language: Language, origin: string, trialInstruction: string, deviceName: string, execEnabled = false) {
-  if (language === "en") {
+  if (language !== "zh-CN") {
     const introduction = deviceName
       ? `Set up a Custom Connector for the device “${deviceName}”, named “Muse Local Files - ${deviceName}”. Its HTTPS base URL is ${origin} and its API prefix is /agent/v1.
 Confirm the device name with me before creating or renaming the connector. If a connector already uses this URL, update its display name. If the requested name exists for a different URL, ask me to choose a distinct name before proceeding.
@@ -139,7 +139,7 @@ The API returns JSON. Send Content-Type: application/json for POST requests and 
 - GET /agent/v1/roots returns roots.search, roots.read, and roots.write, each listing the aliases authorized for that operation.
 - GET /agent/v1/locations/desktop returns root, path, and the absolute_path of the Windows Desktop. Use this to locate the Desktop if it is within the authorized scope.
 - POST /agent/v1/search accepts {"name":"part of the file name","limit":30}. Optional fields: root, extensions, modified_since_ms, modified_before_ms, and cursor. If you know the drive letter, pass its root alias first. Results include hits, complete, scanning, backend, scopes, and optional next_cursor and retry_after_ms. Each hit has root, path, kind, size, and modified_ms. When scanning is true, show the current results and scopes still being indexed, wait for retry_after_ms, and try again. If indexing is unfinished or complete is false, say that coverage is incomplete. To paginate, pass next_cursor as cursor and keep the other query parameters the same.
-- If search returns HTTP 409 with search_index_cleared, ask the user to open Settings → Data in MuseLink and select Rebuild index. Wait for the user before searching again.
+- If search returns HTTP 409 with search_index_cleared, ask the user to open Settings → Data in FinchLink and select Rebuild index. Wait for the user before searching again.
 - GET /agent/v1/list?root=<alias>&path=<relative-folder> lists a folder. Use an empty path to list the root.
 - GET /agent/v1/read?root=<alias>&path=<relative-file> returns encoding and content. The encoding is text or base64.
 - POST /agent/v1/write accepts {"root":"alias","path":"relative file","content":"file content","encoding":"text"}. Encoding may also be base64. Write files only at my explicit request.

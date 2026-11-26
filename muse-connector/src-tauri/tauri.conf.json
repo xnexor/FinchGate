@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "MuseLink",
+  "productName": "FinchLink",
   "mainBinaryName": "muse-connector",
   "version": "1.0.1",
   "identifier": "io.github.aenvo.muselink",
@@ -13,7 +13,7 @@
   "app": {
     "windows": [
       {
-        "title": "Muse连接器",
+        "title": "FinchLink",
         "width": 720,
         "height": 680,
         "resizable": true,

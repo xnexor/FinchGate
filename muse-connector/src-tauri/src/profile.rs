@@ -41,6 +41,8 @@ pub enum Language {
     Chinese,
     #[serde(rename = "en")]
     English,
+    #[serde(rename = "fa")]
+    Persian,
 }
 
 impl Language {
@@ -48,11 +50,12 @@ impl Language {
         match self {
             Self::Chinese => chinese,
             Self::English => english,
+            Self::Persian => english,
         }
     }
 
     pub fn product_name(self) -> &'static str {
-        self.text("Muse连接器", "MuseLink")
+        self.text("Muse连接器", "FinchLink")
     }
 }
 
@@ -326,7 +329,7 @@ mod tests {
         assert!(reopened.start_minimized);
         assert_eq!(
             profile.window_title(reopened.language),
-            "MuseLink · Development"
+            "FinchLink · Development"
         );
         assert!(!DesktopState::default().start_minimized);
         assert!(DesktopState::default().close_to_tray);

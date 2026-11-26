@@ -2,12 +2,12 @@
   "name": "muse-connector",
   "private": true,
   "version": "1.0.1",
-  "description": "MuseLink desktop UI for connecting Muse to authorized Windows files and optional sandboxed local commands.",
+  "description": "FinchLink desktop UI for connecting Muse to authorized Windows files and optional sandboxed local commands.",
   "license": "MIT",
-  "homepage": "https://github.com/Aenvo/MuseLink",
+  "homepage": "https://github.com/xnexor/FinchLink",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Aenvo/MuseLink.git",
+    "url": "https://github.com/xnexor/FinchLink.git",
     "directory": "muse-connector"
   },
   "type": "module",

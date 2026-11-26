@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/muselink-logo.png" alt="MuseLink 应用图标" width="128">
+  <img src="assets/finchlink-logo.png" alt="FinchLink 应用图标" width="128">
 </p>
 
-<h1 align="center">MuseLink · Muse连接器</h1>
+<h1 align="center">FinchLink · Muse连接器</h1>
 
 <p align="center">
   让 Muse 在你授权的文件夹和磁盘中搜索、读取、写入 Windows 本机文件，并按需在写受限沙箱与本机审批保护下执行项目命令。
@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="README.md">简体中文</a> · <a href="README.en.md">English</a> ·
-  <a href="https://github.com/Aenvo/MuseLink/releases/latest">下载最新版</a> ·
+  <a href="https://github.com/xnexor/FinchLink/releases/latest">下载最新版</a> ·
   <a href="#使用指南">使用指南</a> · <a href="#从源码构建">源码构建</a> ·
   <a href="CHANGELOG.md">更新日志</a>
 </p>
@@ -44,7 +44,7 @@
   </tr>
 </table>
 
-截图来自 MuseLink 界面，目录、地址和访问统计均为演示数据。
+截图来自 FinchLink 界面，目录、地址和访问统计均为演示数据。
 
 ## 功能概览
 
@@ -59,14 +59,14 @@
 
 ## 下载与安装
 
-在 [GitHub Releases](https://github.com/Aenvo/MuseLink/releases/latest) 选择 Windows x64 版本。两种版本都需要 WebView2。
+在 [GitHub Releases](https://github.com/xnexor/FinchLink/releases/latest) 选择 Windows x64 版本。两种版本都需要 WebView2。
 
 | 版本 | 下载与启动 |
 | --- | --- |
-| 免安装版 | 下载 `MuseLink-<version>-windows-x64-portable.zip`，完整解压后运行 `muse-connector.exe`。 |
-| 安装版 | 下载 `MuseLink-<version>-windows-x64-setup.exe`，运行安装程序。 |
+| 免安装版 | 下载 `FinchLink-<version>-windows-x64-portable.zip`，完整解压后运行 `muse-connector.exe`。 |
+| 安装版 | 下载 `FinchLink-<version>-windows-x64-setup.exe`，运行安装程序。 |
 
-可用同一 Release 中的 `SHA256SUMS.txt` 校验下载文件。MuseLink 主程序及安装包尚未进行代码签名，Windows 可能提示未知发布者。
+可用同一 Release 中的 `SHA256SUMS.txt` 校验下载文件。FinchLink 主程序及安装包尚未进行代码签名，Windows 可能提示未知发布者。
 
 ## 使用指南
 
