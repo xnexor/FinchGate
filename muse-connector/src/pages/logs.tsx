@@ -18,7 +18,7 @@ import { formatTime, type BridgeModel, type LogRecord, type LogBatch } from "@/l
 
 const kinds = ["audit", "runtime"] as const;
 const logLimit = 1000;
-const clock = { en: logClock("en"), "zh-CN": logClock("zh-CN") };
+const clock = { en: logClock("en"), "zh-CN": logClock("zh-CN"), fa: logClock("fa-IR") };
 
 function logClock(language: string) {
   return new Intl.DateTimeFormat(language, { hour: "numeric", minute: "numeric", second: "numeric", hour12: false });
