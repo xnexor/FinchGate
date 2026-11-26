@@ -55,7 +55,7 @@ impl Language {
     }
 
     pub fn product_name(self) -> &'static str {
-        self.text("Muse连接器", "FinchLink")
+        self.text("Muse连接器", "FinchGate")
     }
 }
 
@@ -329,7 +329,7 @@ mod tests {
         assert!(reopened.start_minimized);
         assert_eq!(
             profile.window_title(reopened.language),
-            "FinchLink · Development"
+            "FinchGate · Development"
         );
         assert!(!DesktopState::default().start_minimized);
         assert!(DesktopState::default().close_to_tray);

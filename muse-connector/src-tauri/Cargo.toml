@@ -1,9 +1,9 @@
 [package]
 name = "muse-connector"
 version = "1.0.1"
-description = "FinchLink connects Muse to authorized Windows files and optional sandboxed local commands."
+description = "FinchGate connects Muse to authorized Windows files and optional sandboxed local commands."
 license = "MIT"
-repository = "https://github.com/xnexor/FinchLink"
+repository = "https://github.com/xnexor/FinchGate"
 edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

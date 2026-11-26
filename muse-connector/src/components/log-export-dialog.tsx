@@ -117,7 +117,7 @@ function defaultExportFileName(scope: ExportScope, format: ExportFormat) {
   const pad = (n: number) => String(n).padStart(2, "0");
   const stamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
   const tag = scope === "all_combined" ? "all" : scope;
-  return `finchlink-logs-${tag}-${stamp}.${format}`;
+  return `finchgate-logs-${tag}-${stamp}.${format}`;
 }
 
 export default function LogExportDialog({

@@ -17,11 +17,11 @@ Security updates are provided for the latest released version.
 
 请通过以下方式私下提交：
 
-- 使用本仓库的 [GitHub Security Advisories](https://github.com/xnexor/FinchLink/security/advisories/new)（推荐）提交私密漏洞报告。
+- 使用本仓库的 [GitHub Security Advisories](https://github.com/xnexor/FinchGate/security/advisories/new)（推荐）提交私密漏洞报告。
 
 提交报告时，请尽量提供：
 
-1. 受影响的 FinchLink 版本与 Windows 系统版本。
+1. 受影响的 FinchGate 版本与 Windows 系统版本。
 2. 最小复现步骤、触发条件与预期/实际行为。
 3. 请先脱敏真实令牌（`mfa_*`）、公网隧道域名与个人文件路径。
 
@@ -33,11 +33,11 @@ Security updates are provided for the latest released version.
 
 Please report vulnerabilities privately via:
 
-- [GitHub Security Advisories](https://github.com/xnexor/FinchLink/security/advisories/new) (preferred)
+- [GitHub Security Advisories](https://github.com/xnexor/FinchGate/security/advisories/new) (preferred)
 
 When submitting a report, please include:
 
-1. Affected FinchLink version and Windows OS version.
+1. Affected FinchGate version and Windows OS version.
 2. Minimal reproduction steps, prerequisites, and expected vs. actual behavior.
 3. Redacted logs only — never include real `mfa_*` tokens, private tunnel hostnames, or sensitive personal paths.
 

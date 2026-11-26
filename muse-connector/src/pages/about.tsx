@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-const githubRepositoryUrl = "https://github.com/xnexor/FinchLink";
+const githubRepositoryUrl = "https://github.com/xnexor/FinchGate";
 const changelogUrls = {
-  "zh-CN": "https://github.com/xnexor/FinchLink/blob/main/CHANGELOG.md",
-  en: "https://github.com/xnexor/FinchLink/blob/main/CHANGELOG.en.md",
-  fa: "https://github.com/xnexor/FinchLink/blob/main/CHANGELOG.en.md",
+  "zh-CN": "https://github.com/xnexor/FinchGate/blob/main/CHANGELOG.md",
+  en: "https://github.com/xnexor/FinchGate/blob/main/CHANGELOG.en.md",
+  fa: "https://github.com/xnexor/FinchGate/blob/main/CHANGELOG.en.md",
 } as const;
 
 export default function About({ version, onError }: { version: string; onError: (message: string) => void }) {

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/finchlink-logo.png" alt="FinchLink app icon" width="128">
+  <img src="assets/finchgate-logo.png" alt="FinchGate app icon" width="128">
 </p>
 
-<h1 align="center">FinchLink — Windows File Connector for Muse</h1>
+<h1 align="center">FinchGate — Windows File Connector for Muse</h1>
 
 <p align="center">
   Let Muse search, read, and write files in authorized Windows folders and drives, and optionally run project commands inside a write-restricted sandbox with local approval.
@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="README.md">简体中文</a> · <a href="README.en.md">English</a> ·
-  <a href="https://github.com/xnexor/FinchLink/releases/latest">Download latest</a> ·
+  <a href="https://github.com/xnexor/FinchGate/releases/latest">Download latest</a> ·
   <a href="#quick-start">Quick start</a> · <a href="#build-from-source">Build from source</a> ·
   <a href="CHANGELOG.en.md">Changelog</a>
 </p>
@@ -21,7 +21,7 @@
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-green"></a>
 </p>
 
-![FinchLink overview showing connection status, the public endpoint, and file activity](assets/readme/en/overview.png)
+![FinchGate overview showing connection status, the public endpoint, and file activity](assets/readme/en/overview.png)
 
 ## App preview
 
@@ -44,7 +44,7 @@ The setup guide in the lower-right corner walks you through granting file access
   </tr>
 </table>
 
-These screenshots show the FinchLink interface with sample folders, a demo address, and sample file activity.
+These screenshots show the FinchGate interface with sample folders, a demo address, and sample file activity.
 
 ## Features
 
@@ -59,14 +59,14 @@ These screenshots show the FinchLink interface with sample folders, a demo addre
 
 ## Download and install
 
-Choose a Windows x64 build from [GitHub Releases](https://github.com/xnexor/FinchLink/releases/latest). Both builds require WebView2.
+Choose a Windows x64 build from [GitHub Releases](https://github.com/xnexor/FinchGate/releases/latest). Both builds require WebView2.
 
 | Build | Download and launch |
 | --- | --- |
-| Portable | Download `FinchLink-<version>-windows-x64-portable.zip`, extract the entire archive, and run `muse-connector.exe`. |
-| Installer | Download `FinchLink-<version>-windows-x64-setup.exe` and run the installer. |
+| Portable | Download `FinchGate-<version>-windows-x64-portable.zip`, extract the entire archive, and run `muse-connector.exe`. |
+| Installer | Download `FinchGate-<version>-windows-x64-setup.exe` and run the installer. |
 
-Use `SHA256SUMS.txt` from the same release to verify your download. The FinchLink executable and installer are unsigned, so Windows may show an unknown publisher prompt.
+Use `SHA256SUMS.txt` from the same release to verify your download. The FinchGate executable and installer are unsigned, so Windows may show an unknown publisher prompt.
 
 ## Quick start
 
@@ -88,9 +88,9 @@ File indexing starts in the background after you first save permissions. Manage 
 - **Per-workspace write-restricted sandbox**: Local command execution is off by default and can be enabled under **File Access** (re-copy the setup instructions to Muse after enabling). Commands run inside a Windows write-restricted sandbox (`CreateRestrictedToken(WRITE_RESTRICTED)` + `JobObject` memory, process-count, and timeout limits) with a unique SHA-256-derived SID per workspace. Writes are restricted strictly to the targeted project subfolder and an isolated per-job temp directory (bare drive roots are rejected, and sibling or parent folders cannot write into each other). Internal environment variables are stripped, and sandbox initialization fails closed without silently falling back to unsandboxed execution.
 - **3-tier risk model & auto-elevated approval dialog**:
   - **Auto-allowed**: Standard read-only and project build/test commands (such as `git status`/`diff`/`log`, `cargo test`/`check`, `pnpm build`, `pytest`) run without interrupting you and return HTTP 200 directly when they finish quickly; pure read-only direct commands skip workspace write ACLs entirely.
-  - **Per-project session approval**: First-time `powershell`/`cmd` usage, package installs/updates, or `git push` in a project wakes the FinchLink window to the foreground (120-second timeout defaults to deny) with long-polling via `GET /agent/v1/exec/<job_id>?wait_ms=20000` so Muse receives approvals and outputs immediately without waiting for a manual chat reply. Choose **Allow once** or **Allow project this session** (valid for 4 hours, strictly scoped per folder, revocable anytime via **Revoke session grants** in **File Access**).
+  - **Per-project session approval**: First-time `powershell`/`cmd` usage, package installs/updates, or `git push` in a project wakes the FinchGate window to the foreground (120-second timeout defaults to deny) with long-polling via `GET /agent/v1/exec/<job_id>?wait_ms=20000` so Muse receives approvals and outputs immediately without waiting for a manual chat reply. Choose **Allow once** or **Allow project this session** (valid for 4 hours, strictly scoped per folder, revocable anytime via **Revoke session grants** in **File Access**).
   - **Always single confirmation**: Sensitive paths, parent-directory traversal (`..`), force push, recursive/forced deletion, system admin tools, obfuscated scripts, or `unsandboxed` requests always require a single-use approval with session grants disabled.
-- **Kill switch, redaction, and clean teardown**: Disabling command execution, pausing the connection, or rotating/revoking the token immediately cancels running commands and pending approvals and terminates child process trees. Audit and runtime logs automatically redact `mfa_` tokens and can be filtered by **Files** or **Command execution**. Exiting FinchLink cleanly tears down managed `Everything.exe`, `cloudflared`, and command child processes via Windows JobObjects.
+- **Kill switch, redaction, and clean teardown**: Disabling command execution, pausing the connection, or rotating/revoking the token immediately cancels running commands and pending approvals and terminates child process trees. Audit and runtime logs automatically redact `mfa_` tokens and can be filtered by **Files** or **Command execution**. Exiting FinchGate cleanly tears down managed `Everything.exe`, `cloudflared`, and command child processes via Windows JobObjects.
 - **Permission changes & legacy compatibility**: When you first authorize files, Muse can search, read, and write within that scope. Switching to selected folders preserves only the operations covered by your previous grant; switching from folders to drives requires confirming all operations on the selected drives. Legacy read-only File Bridge settings still apply to the legacy API.
 - **Tokens & tunnels**: Enter the dedicated token in the Muse security card. Pause the connection or revoke the token to stop access, and update the security card after rotating it. Cloudflare named tunnels require an available domain in your account; update the URL in Muse whenever switching providers changes the public endpoint.
 
@@ -119,4 +119,4 @@ This project links to and recognizes the [LINUX DO](https://linux.do/) community
 
 ## License and acknowledgments
 
-FinchLink is open-sourced under the [MIT License](./LICENSE). The legacy file API is based on the [muse-file-bridge](https://github.com/TTNAN/muse-file-bridge) v0.3 protocol. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for third-party licenses and bundled binary notices.
+FinchGate is open-sourced under the [MIT License](./LICENSE). The legacy file API is based on the [muse-file-bridge](https://github.com/TTNAN/muse-file-bridge) v0.3 protocol. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for third-party licenses and bundled binary notices.
